@@ -31,4 +31,22 @@ public class Delivery {
     @OneToMany
     @JoinColumn(name = "delivery_id")
     private Set<ProductOrder> productOrders = new HashSet<>();
+
+    public Delivery(LocalDate deliveryDate, String fromWarehouse, String destination) {
+        this.deliveryDate = deliveryDate;
+        this.fromWarehouse = fromWarehouse;
+        this.destination = destination;
+    }
+
+    public Delivery(LocalDate deliveryDate, String fromWarehouse, String destination, Set<ProductOrder> productOrders) {
+        this.deliveryDate = deliveryDate;
+        this.fromWarehouse = fromWarehouse;
+        this.destination = destination;
+        this.productOrders = productOrders;
+    }
+
+
+    public void addProductOrder(ProductOrder productOrder) {
+        productOrders.add(productOrder);
+    }
 }

@@ -24,4 +24,10 @@ public class ProductOrder {
 
     private Product product;
 
+    public ProductOrder(int quantity, Product product) {
+        this.quantity = quantity;
+        this.product = product;
+    }
+
+
 }
