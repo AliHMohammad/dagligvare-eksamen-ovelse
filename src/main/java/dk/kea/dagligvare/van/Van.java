@@ -26,4 +26,20 @@ public class Van {
     @OneToMany()
     @JoinColumn(name = "van_id")
     private Set<Delivery> deliveries = new HashSet<>();
+
+
+    public Van(String model, int capacity, Set<Delivery> deliveries) {
+        this.model = model;
+        this.capacity = capacity;
+        this.deliveries = deliveries;
+    }
+
+    public Van(String model, int capacity) {
+        this.model = model;
+        this.capacity = capacity;
+    }
+
+    public void assignDelivery(Delivery delivery) {
+        deliveries.add(delivery);
+    }
 }

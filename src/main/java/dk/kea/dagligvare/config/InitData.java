@@ -6,6 +6,8 @@ import dk.kea.dagligvare.product.Product;
 import dk.kea.dagligvare.product.ProductRepository;
 import dk.kea.dagligvare.productorder.ProductOrder;
 import dk.kea.dagligvare.productorder.ProductOrderRepository;
+import dk.kea.dagligvare.van.Van;
+import dk.kea.dagligvare.van.VanRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -23,14 +25,18 @@ public class InitData implements ApplicationRunner {
     private final ProductRepository productRepository;
     private final DeliveryRepository deliveryRepository;
     private final ProductOrderRepository productOrderRepository;
+    private final VanRepository vanRepository;
     List<Product> products = new ArrayList<>();
     List<ProductOrder> productOrders = new ArrayList<>();
     List<Delivery> deliveries = new ArrayList<>();
+    List<Van> vans = new ArrayList<>();
 
-    public InitData(ProductRepository productRepository, DeliveryRepository deliveryRepository, ProductOrderRepository productOrderRepository) {
+    public InitData(ProductRepository productRepository, DeliveryRepository deliveryRepository, ProductOrderRepository productOrderRepository,
+                    VanRepository vanRepository) {
         this.productRepository = productRepository;
         this.deliveryRepository = deliveryRepository;
         this.productOrderRepository = productOrderRepository;
+        this.vanRepository = vanRepository;
     }
 
     @Override
@@ -44,6 +50,15 @@ public class InitData implements ApplicationRunner {
         createProducts();
         createProductOrders();
         createDeliveries();
+        createVans();
+    }
+
+    private void createVans() {
+        vans.add(new Van("Audi", 3500, new HashSet<>(List.of(deliveries.get(0), deliveries.get(1)))));
+        vans.add(new Van("Mercedes", 2000, new HashSet<>(List.of(deliveries.get(2), deliveries.get(3)))));
+        vans.add(new Van("Tesla", 1500));
+
+        vanRepository.saveAll(vans);
     }
 
     private void createProductOrders() {
