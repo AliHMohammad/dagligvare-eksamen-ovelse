@@ -33,7 +33,13 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Product> deleteProductById(@PathVariable("id") long id) {
-        Product product = productService.deleteProductById(id);
+        return ResponseEntity.ok(productService.deleteProductById(id));
+    }
+
+
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@RequestBody RequestProductDTO requestProductDTO) {
+        Product product = productService.createProduct(requestProductDTO);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -42,5 +48,10 @@ public class ProductController {
                 .toUri();
 
         return ResponseEntity.created(location).body(product);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProductById(@PathVariable("id") long id, @RequestBody RequestProductDTO requestProductDTO) {
+        return ResponseEntity.ok(productService.updateProductById(id, requestProductDTO));
     }
 }

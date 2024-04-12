@@ -39,4 +39,31 @@ public class ProductService {
 
         return productInDb;
     }
+
+    public Product createProduct(RequestProductDTO requestProductDTO) {
+        Product product = toEntity(requestProductDTO);
+        return productRepository.save(product);
+    }
+
+    public Product updateProductById(long id, RequestProductDTO requestProductDTO) {
+        if (!productRepository.existsById(id))
+            throw new EntityNotFoundException("Product with id " + id + "not found");
+
+        Product product = toEntity(requestProductDTO);
+        product.setId(id);
+        productRepository.save(product);
+
+        return product;
+    }
+
+
+    public Product toEntity(RequestProductDTO requestProductDTO) {
+        return new Product(
+                requestProductDTO.name(),
+                requestProductDTO.price(),
+                requestProductDTO.weightInGrams()
+        );
+    }
+
+
 }
