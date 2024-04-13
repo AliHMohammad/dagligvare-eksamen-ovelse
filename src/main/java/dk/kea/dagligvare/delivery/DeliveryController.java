@@ -1,5 +1,6 @@
 package dk.kea.dagligvare.delivery;
 
+import dk.kea.dagligvare.productorder.RequestProductOrderDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -43,7 +44,7 @@ public class DeliveryController {
 
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ResponseDetailedDeliveryDTO> updateDeliveryById(@RequestBody RequestUpdateDeliveryDTO requestUpdateDeliveryDTO, long id) {
+    public ResponseEntity<ResponseDetailedDeliveryDTO> updateDeliveryById(@RequestBody List<RequestProductOrderDTO> requestUpdateDeliveryDTO, long id) {
         return ResponseEntity.ok(deliveryService.updateDeliveryById(requestUpdateDeliveryDTO, id));
     }
 

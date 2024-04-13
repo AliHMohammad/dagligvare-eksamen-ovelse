@@ -4,6 +4,7 @@ package dk.kea.dagligvare.delivery;
 import dk.kea.dagligvare.product.ProductRepository;
 import dk.kea.dagligvare.productorder.ProductOrder;
 import dk.kea.dagligvare.productorder.ProductOrderService;
+import dk.kea.dagligvare.productorder.RequestProductOrderDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -79,11 +80,11 @@ public class DeliveryService {
 
 
     @Transactional
-    public ResponseDetailedDeliveryDTO updateDeliveryById(RequestUpdateDeliveryDTO requestUpdateDeliveryDTO, long id) {
+    public ResponseDetailedDeliveryDTO updateDeliveryById(List<RequestProductOrderDTO> requestUpdateDeliveryDTO, long id) {
         Delivery deliveryInDb = deliveryRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Delivery with id " + id + " not found"));
 
-        requestUpdateDeliveryDTO.items()
+        requestUpdateDeliveryDTO
                 .forEach(i -> {
                     ProductOrder createdProductOrder = productOrderService.createProductOrder(i);
                     deliveryInDb.addProductOrder(createdProductOrder);
