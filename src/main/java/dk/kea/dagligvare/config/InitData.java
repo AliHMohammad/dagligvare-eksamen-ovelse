@@ -56,7 +56,7 @@ public class InitData implements ApplicationRunner {
     private void createVans() {
         vans.add(new Van("Audi", 3500, new HashSet<>(List.of(deliveries.get(0), deliveries.get(1)))));
         vans.add(new Van("Mercedes", 2000, new HashSet<>(List.of(deliveries.get(2), deliveries.get(3)))));
-        vans.add(new Van("Tesla", 1500));
+        vans.add(new Van("Tesla", 500));
 
         vanRepository.saveAll(vans);
     }
@@ -68,8 +68,8 @@ public class InitData implements ApplicationRunner {
         productOrders.add(new ProductOrder(1, products.get(0)));
         productOrders.add(new ProductOrder(3, products.get(2)));
         productOrders.add(new ProductOrder(2, products.get(2)));
-        productOrders.add(new ProductOrder(1, products.get(3)));
-        productOrders.add(new ProductOrder(3, products.get(3)));
+        productOrders.add(new ProductOrder(1000, products.get(3)));
+        productOrders.add(new ProductOrder(2, products.get(3)));
 
         productOrderRepository.saveAll(productOrders);
     }

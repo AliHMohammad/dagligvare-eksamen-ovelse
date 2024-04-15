@@ -42,4 +42,13 @@ public class Van {
     public void assignDelivery(Delivery delivery) {
         deliveries.add(delivery);
     }
+
+
+    public int getCombinedWeightOfDeliveries() {
+        int sum = 0;
+        for (Delivery delivery : getDeliveries()) {
+            sum += delivery.getTotalWeightInKilos();
+        }
+        return sum;
+    }
 }

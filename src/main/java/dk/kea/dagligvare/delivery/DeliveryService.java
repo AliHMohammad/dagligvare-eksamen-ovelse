@@ -39,7 +39,7 @@ public class DeliveryService {
         double sumInGrams = 0;
 
         for (ProductOrder productOrder : delivery.getProductOrders()) {
-            sumInGrams += productOrder.getProduct().getWeightInGrams() * productOrder.getQuantity();
+            sumInGrams += productOrder.getTotalWeightInGrams();
         }
 
         return sumInGrams;

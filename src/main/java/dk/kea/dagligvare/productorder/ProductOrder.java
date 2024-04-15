@@ -1,7 +1,5 @@
 package dk.kea.dagligvare.productorder;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import dk.kea.dagligvare.delivery.Delivery;
 import dk.kea.dagligvare.product.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -29,5 +27,8 @@ public class ProductOrder {
         this.product = product;
     }
 
+    public double getTotalWeightInGrams() {
+        return (double) quantity * product.getWeightInGrams();
+    }
 
 }
