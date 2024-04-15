@@ -49,4 +49,13 @@ public class Delivery {
     public void addProductOrder(ProductOrder productOrder) {
         productOrders.add(productOrder);
     }
+
+    public int getTotalWeightInKilos() {
+        double weight = 0;
+        for (ProductOrder productOrder : productOrders) {
+            weight += productOrder.getTotalWeightInGrams();
+        }
+
+        return (int) Math.ceil(weight / 1000);
+    }
 }
