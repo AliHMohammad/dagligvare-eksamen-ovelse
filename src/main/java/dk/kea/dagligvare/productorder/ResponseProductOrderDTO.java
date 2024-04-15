@@ -4,6 +4,6 @@ import dk.kea.dagligvare.product.Product;
 
 public record ResponseProductOrderDTO(
         int quantity,
-        Product item
+        Product product
 ) {
 }

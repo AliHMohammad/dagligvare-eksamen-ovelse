@@ -71,6 +71,7 @@ public class InitData implements ApplicationRunner {
         productOrders.add(new ProductOrder(1, products.get(3)));
         productOrders.add(new ProductOrder(3, products.get(3)));
 
+
         productOrderRepository.saveAll(productOrders);
     }
 
@@ -80,6 +81,13 @@ public class InitData implements ApplicationRunner {
         products.add(new Product("Oksekød", 50.0, 800));
         products.add(new Product("Ost", 12.0, 100));
         products.add(new Product("Mælk", 10, 1000));
+        products.add(new Product("Flødeboller", 20, 250));
+        products.add(new Product("Kakao", 15, 400));
+        products.add(new Product("Smørrebrød", 30, 200));
+        products.add(new Product("Wienerbrød", 25, 150));
+        products.add(new Product("Chokoladebar", 10, 100));
+        products.add(new Product("Kransekage", 35, 300));
+        products.add(new Product("Kaffe", 5, 250));
 
         productRepository.saveAll(products);
     }
