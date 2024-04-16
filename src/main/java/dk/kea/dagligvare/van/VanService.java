@@ -75,4 +75,10 @@ public class VanService {
         );
     }
 
+    public Integer getCurrentWeightForVanById(long id) {
+        Van vanInDb = vanRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Van with id " + id + "not found"));
+
+        return vanInDb.getCombinedWeightOfDeliveries();
+    }
 }

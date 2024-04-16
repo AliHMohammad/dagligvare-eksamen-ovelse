@@ -34,4 +34,9 @@ public class VanController {
     public ResponseEntity<List<ResponseVanDTO>> getAllVans() {
         return ResponseEntity.ok(vanService.getAllVans());
     }
+
+    @GetMapping("/{id}/weight")
+    public ResponseEntity<Integer> getCurrentWeightForVanById(@PathVariable("id") long id) {
+        return ResponseEntity.ok(vanService.getCurrentWeightForVanById(id));
+    }
 }
