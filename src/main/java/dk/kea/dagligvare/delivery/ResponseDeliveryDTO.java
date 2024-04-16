@@ -6,6 +6,7 @@ public record ResponseDeliveryDTO(
         Long id,
         LocalDate deliveryDate,
         String fromWarehouse,
-        String destination
+        String destination,
+        Long vanId
 ) {
 }

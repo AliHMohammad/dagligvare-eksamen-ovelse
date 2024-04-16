@@ -8,6 +8,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,7 +30,13 @@ public class VanService {
         Van vanInDb = vanRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Van with id " + id + "not found"));
 
-        return vanInDb.getDeliveries().stream().map(deliveryService::toDTO).toList();
+        List<ResponseDeliveryDTO> deliveryDTOS = new ArrayList<>();
+
+        for (Delivery delivery : vanInDb.getDeliveries()) {
+            deliveryDTOS.add(deliveryService.toDTO(delivery, id));
+        }
+
+        return deliveryDTOS;
     }
 
     public Van assignDeliveryToVanById(long vanId, long deliveryId) throws BadRequestException {

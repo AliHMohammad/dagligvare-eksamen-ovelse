@@ -11,6 +11,7 @@ public record ResponseDetailedDeliveryDTO(
         LocalDate deliveryDate,
         String fromWarehouse,
         String destination,
-        List<ResponseProductOrderDTO> products
+        List<ResponseProductOrderDTO> products,
+        Long vanId
 ) {
 }
