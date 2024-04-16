@@ -26,6 +26,10 @@ public class VanService {
     }
 
 
+    public List<ResponseVanDTO> getAllVans() {
+        return vanRepository.findAll().stream().map(this::toDTO).toList();
+    }
+
     public List<ResponseDeliveryDTO> getAllDeliveriesByVanId(long id) {
         Van vanInDb = vanRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Van with id " + id + "not found"));
@@ -39,7 +43,7 @@ public class VanService {
         return deliveryDTOS;
     }
 
-    public Van assignDeliveryToVanById(long vanId, long deliveryId) throws BadRequestException {
+    public ResponseVanDTO assignDeliveryToVanById(long vanId, long deliveryId) throws BadRequestException {
         Van vanInDb = vanRepository.findById(vanId)
                 .orElseThrow(() -> new EntityNotFoundException("Van with id " + vanId + "not found"));
 
@@ -59,6 +63,16 @@ public class VanService {
 
         vanInDb.assignDelivery(deliveryInDb);
         vanRepository.save(vanInDb);
-        return vanInDb;
+        return toDTO(vanInDb);
     }
+
+
+    public ResponseVanDTO toDTO(Van van) {
+        return new ResponseVanDTO(
+                van.getId(),
+                van.getModel(),
+                van.getCapacity()
+        );
+    }
+
 }

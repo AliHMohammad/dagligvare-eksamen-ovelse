@@ -26,7 +26,12 @@ public class VanController {
 
 
     @PatchMapping("/{vanId}/deliveries/{deliveryId}")
-    public ResponseEntity<Van> assignDeliveryToVanById(@PathVariable("vanId") long vanId, @PathVariable("deliveryId") long deliveryId) throws BadRequestException {
+    public ResponseEntity<ResponseVanDTO> assignDeliveryToVanById(@PathVariable("vanId") long vanId, @PathVariable("deliveryId") long deliveryId) throws BadRequestException {
         return ResponseEntity.ok(vanService.assignDeliveryToVanById(vanId, deliveryId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ResponseVanDTO>> getAllVans() {
+        return ResponseEntity.ok(vanService.getAllVans());
     }
 }
