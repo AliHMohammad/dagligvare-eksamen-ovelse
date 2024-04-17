@@ -44,7 +44,7 @@ public class DeliveryController {
 
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ResponseDetailedDeliveryDTO> updateDeliveryById(@RequestBody List<RequestProductOrderDTO> requestUpdateDeliveryDTO, long id) {
+    public ResponseEntity<ResponseDetailedDeliveryDTO> updateDeliveryById(@RequestBody List<RequestProductOrderDTO> requestUpdateDeliveryDTO, @PathVariable("id") long id) {
         return ResponseEntity.ok(deliveryService.updateDeliveryById(requestUpdateDeliveryDTO, id));
     }
 

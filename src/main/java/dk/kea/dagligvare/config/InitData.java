@@ -99,7 +99,7 @@ public class InitData implements ApplicationRunner {
         deliveries.add(new Delivery(LocalDate.now().plusDays(1), "w2", "Esbjerg", new HashSet<>(List.of(productOrders.get(0)))));
         deliveries.add(new Delivery(LocalDate.now().plusDays(3), "w2", "Aalborg", new HashSet<>(List.of(productOrders.get(3)))));
         deliveries.add(new Delivery(LocalDate.now().plusDays(1), "w3", "København H", new HashSet<>(List.of(productOrders.get(3), productOrders.get(4)))));
-        deliveries.add(new Delivery(LocalDate.now().plusDays(6), "w4", "Odense", new HashSet<>(List.of(productOrders.get(5), productOrders.get(6)))));
+        deliveries.add(new Delivery(LocalDate.now().plusDays(6), "w4", "Odense", new HashSet<>()));
 
         deliveryRepository.saveAll(deliveries);
     }
